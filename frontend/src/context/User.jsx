@@ -15,7 +15,7 @@ export const UserProvider = ({children}) =>{
     async function registerUser(name, email, password, navigate, fetchSongs, fetchAlbums){
         setBtnLoading(true)
         try {
-            const {data} = await axios.post("/api/user/register", {name, email, password})
+            const {data} = await axios.post("https://mern-stack-spotify.onrender.com/api/user/register", {name, email, password})
             toast.success(data.message)
             setUser(data.user)
             setIsAuth(true)
@@ -33,7 +33,7 @@ export const UserProvider = ({children}) =>{
     async function loginUser(email, password, navigate, fetchSongs, fetchAlbums){
         setBtnLoading(true)
         try {
-            const {data} = await axios.post("/api/user/login", {email, password})
+            const {data} = await axios.post("https://mern-stack-spotify.onrender.com/api/user/login", {email, password})
             toast.success(data.message)
             setUser(data.user)
             setIsAuth(true)
@@ -50,7 +50,7 @@ export const UserProvider = ({children}) =>{
 
     async function fetchUser(){
         try {
-            const {data} = await axios.get("/api/user/me")
+            const {data} = await axios.get("https://mern-stack-spotify.onrender.com/api/user/me")
             setUser(data)
             setIsAuth(true)
             setLoading(false)
@@ -64,7 +64,7 @@ export const UserProvider = ({children}) =>{
 
     async function logoutUser(){
         try {
-            const {data} = await axios.get("/api/user/logout")
+            const {data} = await axios.get("https://mern-stack-spotify.onrender.com/api/user/logout")
             window.location.reload()
         } catch (error) {
             toast.error(error.response.data.message)
@@ -74,7 +74,7 @@ export const UserProvider = ({children}) =>{
 
     async function addToPlaylist(id){
         try {
-           const {data} = await axios.post("/api/user/song/" + id) 
+           const {data} = await axios.post("https://mern-stack-spotify.onrender.com/api/user/song/" + id) 
            toast.success(data.message)
            fetchUser()
         } catch (error) {
